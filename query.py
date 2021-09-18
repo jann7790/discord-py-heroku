@@ -46,6 +46,7 @@ def queryCourse():
         r=requests.post('https://querycourse.ntust.edu.tw/querycourse/api/courses', json=json)
         print(r.text)
         df = pd.read_json(StringIO(r.text))
+        print(df)
         df = df.drop(['Semester', 'RequireOption', 'AllYear', 'ThreeStudent', 'AllStudent', 'NTURestrict', 'Restrict2', 'NTNURestrict', 'CourseTimes', 'ClassRoomNo', 'ThreeNode', 'PracticalTimes', 'Dimension', 'CreditPoint', 'Contents'], axis = 1)
         df.loc[:, 'Rate'] =  df.Restrict1 /  df.ChooseStudent
         df = df.sort_values(by=['Rate'])
