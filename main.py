@@ -8,7 +8,6 @@ from query import *
 import datetime
 
 posts = []
-load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix='!')
 
@@ -79,5 +78,5 @@ async def query(ctx):
     while text:
         await ctx.send(text[:2000])
         text = text[2000:]
-
-bot.run(TOKEN)
+if __name__ == "__main__":
+    bot.run(TOKEN)
