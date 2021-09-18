@@ -46,7 +46,6 @@ def queryCourse():
         r=requests.post('https://querycourse.ntust.edu.tw/querycourse/api/courses', json=json)
         print(r.text)
         df = pd.read_json(StringIO(r.text))
-        print(df)
         df = df.drop(['Semester', 'RequireOption', 'AllYear', 'ThreeStudent', 'AllStudent', 'NTURestrict', 'Restrict2', 'NTNURestrict', 'CourseTimes', 'ClassRoomNo', 'ThreeNode', 'PracticalTimes', 'Dimension', 'CreditPoint', 'Contents'], axis = 1)
         df.loc[:, 'Rate'] =  df.Restrict1 /  df.ChooseStudent
         df = df.sort_values(by=['Rate'])
@@ -55,6 +54,7 @@ def queryCourse():
         df = df[df.ChooseStudent < df.Restrict1]
         time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         list_of_files = glob.glob('.\\tmp\\*')
+        print(df)
         if list_of_files:
             latest_file = max(list_of_files, key=os.path.getctime)
             last = pd.read_csv(latest_file)
