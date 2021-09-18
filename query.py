@@ -54,7 +54,6 @@ def queryCourse():
         df = df[df.ChooseStudent < df.Restrict1]
         time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         list_of_files = glob.glob('.\\tmp\\*')
-        print(df)
         if list_of_files:
             latest_file = max(list_of_files, key=os.path.getctime)
             last = pd.read_csv(latest_file)
@@ -64,14 +63,14 @@ def queryCourse():
             df.to_csv(f'./tmp/{time}_course.csv', index=False, encoding='utf-8')
             df = df[df.CourseNo.apply(lambda x: True if x not in list(last.CourseNo) else False)]
 
-            
+
             if df.empty:
                 added = 'None'
             else:
                 added = str(df.values)
 
             return (lastTime, added, str(list(last.columns)) + str(last.values))
-        return
+        return '', '', ''
         
         
     except Exception as e:
