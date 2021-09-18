@@ -72,8 +72,7 @@ async def query(ctx, arg):
 @bot.command(name='q')
 async def query(ctx):
     print(ctx.author, ' quried at ', datetime.datetime.now())
-    (lastTime, addedCourse, lastCourse) = queryCourse()
-    text = 'last time : ' + lastTime + '\n' + lastCourse + '\n\nadded courses:\n' + addedCourse
+    text = queryCourse()
     while text:
         await ctx.send(text[:2000])
         text = text[2000:]
