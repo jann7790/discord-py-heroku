@@ -23,6 +23,7 @@ def querySex(arg)->list:
     params={'limit':100, 'popular':arg}
     r = requests.get('https://www.dcard.tw/service/api/v2/forums/sex/posts', headers=headers, params=params)
     jsons = json.loads(r.text)
+    print(jsons)
     posts = []
     for i in jsons:
         if (i['gender']) == 'F':
@@ -60,7 +61,7 @@ def queryCourse():
             lastTime = str(lastTime)
             df.to_csv(f'./tmp/{time}_course.csv', index=False, encoding='utf-8')
             df = df[df.CourseNo.apply(lambda x: True if x not in list(last.CourseNo) else False)]
-            
+            print(df)
 
             
             if df.empty:
