@@ -1,5 +1,6 @@
 # bot.py
 import os
+import sys
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -14,7 +15,7 @@ bot = commands.Bot(command_prefix='!')
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
-
+    sys.stdout.flush()
 @bot.event
 async def on_member_join(member):
     await member.create_dm()
