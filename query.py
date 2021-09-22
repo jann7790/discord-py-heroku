@@ -42,7 +42,7 @@ def querySex(arg)->list:
 def queryCourse():
 
     try:
-        json={"Semester":"1101","CourseNo":"","CourseName":"","CourseTeacher":"","Dimension":"","CourseNotes":"","ForeignLanguage":0,"OnlyGeneral":1,"OnleyNTUST":0,"OnlyMaster":0,"Language":"zh"}
+        json={"Semester":"1101","CourseNo":"","CourseName":"","CourseTeacher":"","Dimension":"","CourseNotes":"","ForeignLanguage":0,"OnlyGeneral":1,"OnleyNTUST":1,"OnlyMaster":0,"Language":"zh"}
         r=requests.post('https://querycourse.ntust.edu.tw/querycourse/api/courses', json=json)
         df = pd.read_json(StringIO(r.text))
         df = df.drop(['Semester', 'RequireOption', 'AllYear', 'ThreeStudent', 'AllStudent', 'NTURestrict', 'Restrict2', 'NTNURestrict', 'CourseTimes', 'ClassRoomNo', 'ThreeNode', 'PracticalTimes', 'Dimension', 'CreditPoint', 'Contents'], axis = 1)
