@@ -70,9 +70,9 @@ async def query(ctx, arg):
 
 
 @bot.command(name='q')
-async def query(ctx):
+async def query(ctx, arg):
     print(ctx.author, ' quried at ', datetime.datetime.now())
-    text = queryCourse()
+    text = queryCourse(arg)
     while text:
         await ctx.send(text[:2000])
         text = text[2000:]
